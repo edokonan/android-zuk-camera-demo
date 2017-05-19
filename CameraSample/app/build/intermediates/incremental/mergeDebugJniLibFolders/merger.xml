@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/ksymac/Documents/bitbucket/android/CameraSample-20170519/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/ksymac/Documents/bitbucket/android/CameraSample-20170519/app/src/debug/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/debug/jniLibs"/></dataSet></merger>

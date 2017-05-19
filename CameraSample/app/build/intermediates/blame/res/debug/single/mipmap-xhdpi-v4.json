@@ -1,18 +1,10 @@
 [
     {
-        "merged": "/Users/ksymac/Documents/bitbucket/android/CameraSample-20170519/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
-        "source": "/Users/ksymac/Documents/bitbucket/android/CameraSample-20170519/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/capture.png",
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/mipmap-xhdpi/capture.png"
     },
     {
-        "merged": "/Users/ksymac/Documents/MultiMediaSample-master/CameraSample/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/capture.png",
-        "source": "/Users/ksymac/Documents/MultiMediaSample-master/CameraSample/app/src/main/res/mipmap-xhdpi/capture.png"
-    },
-    {
-        "merged": "/Users/ksymac/Documents/bitbucket/android/CameraSample-20170519/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/capture.png",
-        "source": "/Users/ksymac/Documents/bitbucket/android/CameraSample-20170519/app/src/main/res/mipmap-xhdpi/capture.png"
-    },
-    {
-        "merged": "/Users/ksymac/Documents/MultiMediaSample-master/CameraSample/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
-        "source": "/Users/ksymac/Documents/MultiMediaSample-master/CameraSample/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     }
 ]

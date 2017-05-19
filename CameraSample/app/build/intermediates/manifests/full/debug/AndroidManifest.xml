@@ -20,9 +20,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
+        <!-- android:theme="@style/AppTheme" -->
         <activity
-            android:name="com.hejunlin.camerasample.MainActivity"
+            android:name="com.zuk.camerasample.MainActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +33,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hejunlin.camerasample.MainCameraActivity"
+            android:name="com.zuk.camerasample.MainCameraActivity"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zuk.camerasample.Demo1CameraActivity"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

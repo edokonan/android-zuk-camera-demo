@@ -1,20 +1,7 @@
 package com.zuk.camera;
 
-import android.content.Context;
-import android.graphics.PixelFormat;
-import android.graphics.Point;
 import android.hardware.Camera;
-import android.os.Build;
-import android.util.Log;
-import android.view.Display;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.WindowManager;
 
-import com.hejunlin.camerasample.MainCameraActivity;
-
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -34,8 +21,19 @@ public class UIExtensin  {
         return (float)x/(float)100;
     }
     //根据相同比例选择最大的size
-    static public Camera.Size getMaxSizeByRate(int width, int height, List<Camera.Size> sizeList){
-        float r = getRate(width,height);
+//    static public Camera.Size getMaxSizeByScreenSize(int width, int height, List<Camera.Size> sizeList){
+//        float r = getRate(width,height);
+//        for (Camera.Size size : sizeList){
+//            float rate = getRate(size.width,size.height);
+//            if (Math.abs(r - rate) <= 0.2) {
+//                return size;
+//            }
+//        }
+//        return sizeList.get(0);
+//    }
+
+    //根据相同比例选择最大的size
+    static public Camera.Size getMaxSizeByRate(float r, List<Camera.Size> sizeList){
         for (Camera.Size size : sizeList){
             float rate = getRate(size.width,size.height);
             if (Math.abs(r - rate) <= 0.2) {
@@ -44,6 +42,9 @@ public class UIExtensin  {
         }
         return sizeList.get(0);
     }
+
+
+
 
 
 
