@@ -2219,7 +2219,14 @@
                     "endOffset": 28897
                 },
                 "from": {
-                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/values/strings.xml"
+                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 17,
+                        "endColumn": 44,
+                        "endOffset": 57
+                    }
                 }
             },
             {
@@ -2292,15 +2299,7 @@
                     "endOffset": 29694
                 },
                 "from": {
-                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/values/styles.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 57,
-                        "endLine": 9,
-                        "endColumn": 12,
-                        "endOffset": 432
-                    }
+                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/values/styles.xml"
                 }
             },
             {
@@ -6066,15 +6065,7 @@
                     "endOffset": 116757
                 },
                 "from": {
-                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/values/styles.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 438,
-                        "endLine": 12,
-                        "endColumn": 12,
-                        "endOffset": 555
-                    }
+                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/src/main/res/values/styles.xml"
                 }
             }
         ]

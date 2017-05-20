@@ -43,10 +43,6 @@ public class overlayContent extends View {
         rect.right = (int)right;
         rect.top = (int)top;
         rect.bottom = (int)bottom;
-
-
-
-
     }
 
 

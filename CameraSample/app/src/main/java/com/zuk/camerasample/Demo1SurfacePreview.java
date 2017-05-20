@@ -44,9 +44,7 @@ public class Demo1SurfacePreview extends SurfaceView implements SurfaceHolder.Ca
 //            mCamera.setDisplayOrientation(90);
             mCamera.setDisplayOrientation(0);
             mCamera.setPreviewDisplay(holder);
-
-
-            initCameraSizeConfig();
+            initCameraSizeConfig(Demo1CameraConfig.PicturesizeRate);
             mCamera.startPreview();
         } catch (IOException e) {
             Log.d(TAG, "Error setting camera preview: " + e.getMessage());
@@ -74,22 +72,17 @@ public class Demo1SurfacePreview extends SurfaceView implements SurfaceHolder.Ca
 
     private void initCamera() {
         mParameters = mCamera.getParameters();
-        mParameters.setPictureFormat(PixelFormat.JPEG);
-//        mParameters.setPictureSize(4608,2592);
-//        mParameters.setPreviewSize(1920,1080);
+//        mParameters.setPictureFormat(PixelFormat.JPEG);
 //        mParameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
 //        mParameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
         if (mParameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE))
         {
             mParameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
         }
-
         setDispaly(mParameters, mCamera);
         mCamera.setParameters(mParameters);
         mCamera.startPreview();
         mCamera.cancelAutoFocus();//只有加上了这一句，才会自动对焦。
-        //获取支持的最大size
-//        getMaxOutputSize();
     }
 
 
@@ -136,56 +129,51 @@ public class Demo1SurfacePreview extends SurfaceView implements SurfaceHolder.Ca
     List<Camera.Size> PreviewSizelist;
     Camera.Size PictureSize;
     Camera.Size PreviewSize;
-    int myWidth;
-    int myHeight;
-
+//    int myWidth;
+//    int myHeight;
     /**
      * 根据自己的大小来选择相同比例的最高的分辨率
      * @return
      */
-    public void initCameraSizeConfig()
+    public void initCameraSizeConfig(float rate)
     {
-        myWidth = this.getWidth();
-        myHeight = this.getHeight();
-        Log.i(TAG,"--------display-----");
-        Log.i(TAG,myWidth+ "," + myHeight);
-        // 获取相机所支持的所有的尺寸
-        Log.i(TAG,"-----getSupportedPictureSizes----------");
+//        myWidth = this.getWidth();
+//        myHeight = this.getHeight();
+//        Log.i(TAG,"--------display-----");
+//        Log.i(TAG,myWidth+ "," + myHeight);
+//        // 获取相机所支持的所有的尺寸
+
+        //1.根据固定比例，寻找支持的所有 PictureSize和PreviewSize
         this.PictureSizelist = mCamera.getParameters().getSupportedPictureSizes();
-        for (Camera.Size size : PictureSizelist)
-        {
-            Log.i(TAG,size.width + "," +size.height);
-        }
-
-        Log.i(TAG,"-----getSupportedPreviewSizes----------");
         this.PreviewSizelist = mCamera.getParameters().getSupportedPreviewSizes();
-        for (Camera.Size size : PreviewSizelist)
-        {
+        Log.i(TAG,"-----getSupportedPictureSizes----------");
+        for (Camera.Size size : PictureSizelist){
             Log.i(TAG,size.width + "," +size.height);
         }
-        //课题1 是否需要对SizeList排序
-//        this.PictureSize =  UIExtensin.getMaxSizeByRate(myWidth,myHeight,this.PictureSizelist);
-//        this.PreviewSize =  UIExtensin.getMaxSizeByRate(myWidth,myHeight,this.PreviewSizelist);
+        Log.i(TAG,"-----getSupportedPreviewSizes----------");
+        for (Camera.Size size : PreviewSizelist){
+            Log.i(TAG,size.width + "," +size.height);
+        }
+        //1.1 是否需要对SizeList排序？
 
-        this.PictureSize =  UIExtensin.getMaxSizeByRate((float) 1.77,this.PictureSizelist);
-        this.PreviewSize =  UIExtensin.getMaxSizeByRate((float) 1.77,this.PreviewSizelist);
+
+        //2.根据固定比例，寻找最大的PictureSize和PreviewSize
+        this.PictureSize =  UIExtensin.getMaxSizeByRate(rate,this.PictureSizelist);
+        this.PreviewSize =  UIExtensin.getMaxSizeByRate(rate,this.PreviewSizelist);
 
         Log.i(TAG,"-----PictureSizes----------");
         Log.i(TAG,this.PictureSize.width+ "," + this.PictureSize.height);
         Log.i(TAG,"-----PreviewSize----------");
         Log.i(TAG,this.PreviewSize.width+ "," + this.PreviewSize.height);
 
-        myActivity.resizeView(this.PreviewSize.width,this.PreviewSize.height);
+        //3.在设置摄像头的pictureSize和PreviewSize之后，重新设置浏览视图的大小
+        myActivity.resizeView(this.PictureSize,this.PreviewSize);
 
-//        return list.get(0);
+        //4.将找到的size设置到摄像头上
         mParameters = mCamera.getParameters();
         mParameters.setPictureFormat(PixelFormat.JPEG);
         mParameters.setPictureSize(this.PictureSize.width,this.PictureSize.height);
         mParameters.setPreviewSize(this.PreviewSize.width,this.PreviewSize.height);
-//        if (mParameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE))
-//        {
-//            mParameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-//        }
         setDispaly(mParameters, mCamera);
         mCamera.setParameters(mParameters);
     }

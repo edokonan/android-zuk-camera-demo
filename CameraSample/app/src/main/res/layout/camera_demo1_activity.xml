@@ -27,8 +27,18 @@
         <TextView
             android:id="@+id/debug_infoView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100px"
             android:layout_alignParentBottom="true"
+            android:textColor="@color/colorAccent"
             >
         </TextView>
+        <TextView
+            android:id="@+id/debug_camera_infoView"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/colorAccent"
+            >
+        </TextView>
+
 </RelativeLayout>

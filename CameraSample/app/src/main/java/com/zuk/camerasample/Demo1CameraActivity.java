@@ -41,15 +41,8 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     RelativeLayout overlay_view; //显示识别框框的容器View
     overlayContent rectview; //识别框
 
-
-    float overlay_rect_width_rate = 0.6f;
-    float overlay_rect_height_rate = 0.4f;
-
     TextView debug_infoView;
-
-    int screenWidth = 0;
-    int screenHeight = 0;
-    float screenRate ;
+    TextView debug_camera_infoView;
 
 
 
@@ -64,7 +57,9 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         // Create our Preview view and set it as the content of our activity.
         frameLayout_preview = (RelativeLayout) findViewById(R.id.camera_preview);
         overlay_view = (RelativeLayout) findViewById(R.id.overlay_view);
-        debug_infoView  = (TextView) findViewById(R.id.debug_infoView);
+        debug_infoView = (TextView) findViewById(R.id.debug_infoView);
+        debug_camera_infoView = (TextView) findViewById(R.id.debug_camera_infoView);
+
 //        mCameraSurPreview = (SurfacePreview) (SurfaceView) findViewById(R.id.surfaceView);
         mCameraSurPreview = new Demo1SurfacePreview(this);
         mCameraSurPreview.myActivity = this;
@@ -92,9 +87,9 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
             fos.write(data);
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d(TAG, "File not found: " + e.getMessage());
+            Log.e(TAG, "File not found: " + e.getMessage());
         } catch (IOException e) {
-            Log.d(TAG, "Error accessing file: " + e.getMessage());
+            Log.e(TAG, "Error accessing file: " + e.getMessage());
         }
 
         // Restart the preview and re-enable the shutter button so that we can take another picture
@@ -102,12 +97,14 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
         //See if need to enable or not
 //        mCaptureButton.setEnabled(true);
-        debug_infoView.setText("拍照成功:" + pictureFile.getPath());
-//        Toast.makeText(this, "拍照成功", Toast.LENGTH_LONG).show();
+        String path = pictureFile.getPath();
+        debug_infoView.setText("拍照成功:" + path);
     }
-
-
-
+    private File getOutputMediaFile(){
+        File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(new Date());
+        return new File(picDir.getPath() + File.separator+ "ZCamera-" + timeStamp + ".jpg");
+    }
 
     @Override
     public void onClick(View v) {
@@ -116,13 +113,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         mCameraSurPreview.takePicture(this);
     }
 
-    private File getOutputMediaFile(){
-        //get the mobile Pictures directory
-        File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        //get the current time
-        String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(new Date());
-        return new File(picDir.getPath() + File.separator + "zukcamera"+ timeStamp + ".jpg");
-    }
 
 //    //设置camera的显示preview的size
 //    private void initCameraPreviewViewSize() {
@@ -134,28 +124,51 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 //        mCameraSurPreview.setLayoutParams(params);
 //    }
 
+    //获取屏幕的size
+    int screenWidth = 0;
+    int screenHeight = 0;
+    float screenRate ;
+    //设置浏览图的size
+    int previewWidth = 0;
+    int previewHeight = 0;
 
-    //3.在固定摄像头的pictureSize和PreviewSize之后，重新设置视图的大小
-    public void resizeView(int width,int height) {
+    //3.在设置摄像头的pictureSize和PreviewSize之后，重新设置浏览视图的大小
+    public void resizeView(Camera.Size Camera_PictureSize,Camera.Size Camera_PreviewSize) {
         //获取屏幕的size
         getScreenSize();
 
-        //设置识别框的位置
-        rectview.setParam(this.screenWidth,this.screenHeight,width,height,
-                this.overlay_rect_width_rate,this.overlay_rect_height_rate);
+        //根据比例设置浏览视图的大小:
+//        竖屏计算
+//        previewWidth = screenWidth/2;
+//        previewHeight = (int) ((float)previewWidth * ((float)Camera_PreviewSize.height / (float)Camera_PreviewSize.width));
+//        横屏计算
+        previewHeight = screenHeight;
+        previewWidth = (int) ((float)previewHeight * ((float)Camera_PreviewSize.width / (float)Camera_PreviewSize.height));
 
+        //设置识别框的位置
+        rectview.setParam(
+                this.screenWidth,this.screenHeight,
+                previewWidth,previewHeight,
+                Demo1CameraConfig.overlay_rect_width_rate,
+                Demo1CameraConfig.overlay_rect_height_rate);
 
         //重新设置浏览视图容器的大小
-        RelativeLayout.LayoutParams layout_description =
-                new RelativeLayout.LayoutParams(width,height);
+        RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(previewWidth,previewHeight);
         layout_description.addRule(CENTER_IN_PARENT);
         frameLayout_preview.setLayoutParams(layout_description);
+
         //重新设置浏览视图的大小
         ViewGroup.LayoutParams params = mCameraSurPreview.getLayoutParams();
-        params.width = width;
-        params.height = height;
+        params.width = previewWidth;
+        params.height = previewHeight;
         mCameraSurPreview.setLayoutParams(params);
 
+
+        String infostr = "Camera PictureSize:" + Camera_PictureSize.width+","+Camera_PictureSize.height
+                    + " PreviewSize:"+ Camera_PreviewSize.width+","+Camera_PreviewSize.height
+                + " ScreenSize:"+ this.screenWidth+","+this.screenHeight
+                + " ViewSize:"+ this.previewWidth+","+this.previewHeight;
+        debug_camera_infoView.setText(infostr);
         //start take picture
         startTask();
     }
