@@ -83,6 +83,9 @@ public class MainCameraActivity extends AppCompatActivity implements Camera.Pict
         //See if need to enable or not
         mCaptureButton.setEnabled(true);
         Toast.makeText(this, "拍照成功", Toast.LENGTH_LONG).show();
+
+
+
     }
 
 

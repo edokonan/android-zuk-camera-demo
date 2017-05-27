@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ndco.ncameralib.camera.PictureExtensin;
 import com.ndco.ncameralib.camera.UIExtensin;
 import com.ndco.ncameralib.camera.overlayContent;
 import com.ndco.ncameralib.R;
@@ -216,8 +217,19 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     }
     int icount = 0;
     //解析
+    PictureExtensin pictureExtensin = new PictureExtensin();
     boolean parsepicture(){
         try {
+            pictureExtensin.setPicturePath(this.picturePath,
+                    Demo1CameraConfig.overlay_rect_width_rate,
+                    Demo1CameraConfig.overlay_rect_height_rate);
+
+            Log.i(TAG, pictureExtensin.bitmap.toString());
+            Log.i(TAG, pictureExtensin.top_left_point.toString());
+            Log.i(TAG, pictureExtensin.top_right_point.toString());
+            Log.i(TAG, pictureExtensin.buttom_left_point.toString());
+            Log.i(TAG, pictureExtensin.buttom_right_point.toString());
+
             Thread.sleep(1000); //1000
         } catch (InterruptedException e) {
         }
