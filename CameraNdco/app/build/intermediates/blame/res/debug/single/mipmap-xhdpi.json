@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/mipmap-xhdpi/capture.png",
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/res/mipmap-xhdpi/capture.png"
+    },
+    {
+        "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    }
+]

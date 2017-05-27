@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hejunlin.camerasample.test">
+    package="com.zuk.camerasample.test">
 
-    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="23" />
+    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="22" />
 
     <application>
         <uses-library android:name="android.test.runner" />
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="com.hejunlin.camerasample"
+                     android:targetPackage="com.zuk.camerasample"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for com.hejunlin.camerasample"/>
+                     android:label="Tests for com.zuk.camerasample"/>
 </manifest>

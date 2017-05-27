@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/build/intermediates/res/merged/debug/values-hdpi-v4/values-hdpi-v4.xml",
+        "outputFile": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -9,17 +9,17 @@
                     "startOffset": 55,
                     "endLine": 6,
                     "endColumn": 13,
-                    "endOffset": 327
+                    "endOffset": 325
                 },
                 "from": {
-                    "file": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraSample/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "file": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/values-hdpi/values-hdpi.xml",
                     "position": {
-                        "startLine": 2,
+                        "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 55,
-                        "endLine": 6,
+                        "startOffset": 297,
+                        "endLine": 8,
                         "endColumn": 13,
-                        "endOffset": 327
+                        "endOffset": 567
                     }
                 }
             }

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         //隐藏标题栏
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         //隐藏状态栏
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

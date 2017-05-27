@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/camera_preview"
+            android:layout_width="600px"
+            android:layout_height="600px"
+            android:layout_centerInParent="true"
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
+        </RelativeLayout>
+        <!--android:layout_gravity="center"-->
+
+        <RelativeLayout
+            android:id="@+id/overlay_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            >
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/debug_infoView"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorAccent"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/debug_camera_infoView"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/colorAccent"
+            >
+        </TextView>
+
+</RelativeLayout>

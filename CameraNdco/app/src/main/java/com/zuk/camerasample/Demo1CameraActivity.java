@@ -51,7 +51,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.camera_demo1_activity);
 
         // Create our Preview view and set it as the content of our activity.
