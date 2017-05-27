@@ -7,7 +7,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="53195d99e7c28e53de990175ba49391451ecdfec">
+        sha1="32dd3b8e486908238684558450e092731038544d">
         <dex dex="/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/pre-dexed/debug/classes_c1fa02688c95cd8e22aed351dd025e9659227d74.jar" />
     </item>
 

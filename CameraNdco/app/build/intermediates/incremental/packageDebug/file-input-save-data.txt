@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat May 27 16:16:21 JST 2017
+#Sat May 27 19:02:28 JST 2017
 122.file=/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/resources-debug.ap_/res/color/switch_thumb_material_light.xml
 60.set=ANDROID_RESOURCE
 129.file=/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png

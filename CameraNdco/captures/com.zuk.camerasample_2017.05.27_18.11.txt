@@ -1,0 +1,3 @@
+TASK com.zuk.camerasample id=1337
+  ACTIVITY com.zuk.camerasample/.MainActivity 473f9fb pid=24158
+    Failure while dumping the activity: java.io.IOException: Timeout

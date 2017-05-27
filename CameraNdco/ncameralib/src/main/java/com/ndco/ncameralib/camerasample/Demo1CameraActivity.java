@@ -1,10 +1,13 @@
 package com.ndco.ncameralib.camerasample;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Point;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 
@@ -17,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ndco.ncameralib.camera.NCameraReturnInfo;
 import com.ndco.ncameralib.camera.PictureExtensin;
 import com.ndco.ncameralib.camera.UIExtensin;
 import com.ndco.ncameralib.camera.overlayContent;
@@ -37,6 +41,8 @@ import static java.lang.Thread.sleep;
 public class Demo1CameraActivity extends AppCompatActivity implements Camera.PictureCallback, View.OnClickListener {
 
     private static final String TAG = Demo1CameraActivity.class.getSimpleName();
+    public static final int ncamera_requestCode = 123;
+
 
     RelativeLayout frameLayout_preview; //显示浏览图像的容器View
     private Demo1SurfacePreview mCameraSurPreview; //相机实时浏览View
@@ -46,7 +52,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
     TextView debug_infoView;
     TextView debug_camera_infoView;
-
 
 
 ///    Size screenSize ;
@@ -69,10 +74,22 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
         rectview = new overlayContent(this);
         overlay_view.addView(rectview);
+
+
     }
 
 
 
+    AlertDialog waitDialog;
+    public void showWaitDialog() {
+        AlertDialog.Builder pWaitDailogBuilder = new AlertDialog.Builder(Demo1CameraActivity.this);
+        pWaitDailogBuilder.setMessage("イメージ処理中..");
+        waitDialog = pWaitDailogBuilder.show();
+    }
+    public void closeWaitDialog(){
+        if(waitDialog!=null)
+            waitDialog.dismiss();
+    }
     String picturePath;
     // 保存照片
     @Override
@@ -92,26 +109,27 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         } catch (IOException e) {
             Log.e(TAG, "Error accessing file: " + e.getMessage());
         }
-
         // Restart the preview and re-enable the shutter button so that we can take another picture
         camera.startPreview();
-
         //See if need to enable or not
 //        mCaptureButton.setEnabled(true);
         picturePath = pictureFile.getPath();
         debug_infoView.setText("拍照成功:" + picturePath + "count:" + icount);
-
         // TODO 解析
         boolean ret = parsepicture();
+        NCameraReturnInfo returnInfo = new NCameraReturnInfo();
+        closeWaitDialog();
         if (!ret){
             debug_infoView.setText("拍照成功:" + picturePath + " count:" + icount + " 识别失败，等待3秒" );
             startTask();
         }else{
+//            int resultCode = ...;
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("returninfo", returnInfo);
+            setResult(RESULT_OK, resultIntent);
             finish();
         }
     }
-
-
 
     private File getOutputMediaFile(){
         File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
@@ -209,6 +227,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
 
     void tackpicture(){
+        this.showWaitDialog();
         if (mCameraSurPreview!=null){
             mCameraSurPreview.takePicture(this);
         }else{
@@ -230,8 +249,9 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
             Log.i(TAG, pictureExtensin.buttom_left_point.toString());
             Log.i(TAG, pictureExtensin.buttom_right_point.toString());
 
-            Thread.sleep(1000); //1000
+            Thread.sleep(2000); //1000
         } catch (InterruptedException e) {
+
         }
         icount++;
         if (icount>5){
