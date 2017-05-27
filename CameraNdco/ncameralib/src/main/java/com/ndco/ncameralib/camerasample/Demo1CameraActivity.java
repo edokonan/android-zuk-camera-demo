@@ -30,6 +30,8 @@ import java.util.Date;
 
 
 import static android.widget.RelativeLayout.CENTER_IN_PARENT;
+import static java.lang.Thread.enumerate;
+import static java.lang.Thread.sleep;
 
 public class Demo1CameraActivity extends AppCompatActivity implements Camera.PictureCallback, View.OnClickListener {
 
@@ -70,8 +72,8 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
 
 
-
-
+    String picturePath;
+    // 保存照片
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
         //save the picture to sdcard
@@ -80,7 +82,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
             Log.d(TAG, "Error creating media file, check storage permissions: ");
             return;
         }
-
         try {
             FileOutputStream fos = new FileOutputStream(pictureFile);
             fos.write(data);
@@ -96,9 +97,21 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
         //See if need to enable or not
 //        mCaptureButton.setEnabled(true);
-        String path = pictureFile.getPath();
-        debug_infoView.setText("拍照成功:" + path);
+        picturePath = pictureFile.getPath();
+        debug_infoView.setText("拍照成功:" + picturePath + "count:" + icount);
+
+        // TODO 解析
+        boolean ret = parsepicture();
+        if (!ret){
+            debug_infoView.setText("拍照成功:" + picturePath + " count:" + icount + " 识别失败，等待3秒" );
+            startTask();
+        }else{
+            finish();
+        }
     }
+
+
+
     private File getOutputMediaFile(){
         File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(new Date());
@@ -162,7 +175,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         params.height = previewHeight;
         mCameraSurPreview.setLayoutParams(params);
 
-
         String infostr = "Camera PictureSize:" + Camera_PictureSize.width+","+Camera_PictureSize.height
                     + " PreviewSize:"+ Camera_PreviewSize.width+","+Camera_PreviewSize.height
                 + " ScreenSize:"+ this.screenWidth+","+this.screenHeight
@@ -171,7 +183,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         //start take picture
         startTask();
     }
-
     //获取当前的屏幕size
     private void getScreenSize() {
         WindowManager windowManager = getWindowManager();
@@ -185,22 +196,17 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         this.screenRate = UIExtensin.getRate(this.screenWidth, this.screenHeight);
         Log.i(TAG, this.screenRate + ",");
     }
-
-
     //定时拍照
     Handler handler=new Handler();
     Runnable runnable=new Runnable() {
         @Override
         public void run() {
-            // TODO 拍照
-            tackpicture();
-
-            // TODO 解析
-//            tackpicture();
-            
-            handler.postDelayed(this, 3000);
+        // TODO 拍照
+        tackpicture();
         }
     };
+
+
     void tackpicture(){
         if (mCameraSurPreview!=null){
             mCameraSurPreview.takePicture(this);
@@ -208,9 +214,22 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
             stopTask();
         }
     }
-    void startTask(){
-        handler.postDelayed(runnable, 3000);
+    int icount = 0;
+    //解析
+    boolean parsepicture(){
+        try {
+            Thread.sleep(1000); //1000
+        } catch (InterruptedException e) {
+        }
+        icount++;
+        if (icount>5){
+            return true;
+        }
+        return false;
     }
+
+    // 开始拍照
+    void startTask(){handler.postDelayed(runnable, 3000);}
     void stopTask(){
         handler.removeCallbacks(runnable);
     }
