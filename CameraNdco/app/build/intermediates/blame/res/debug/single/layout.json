@@ -49,7 +49,7 @@
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/layout/camera_activity_main.xml",
-        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/res/layout/camera_activity_main.xml"
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/res/layout/camera_activity_main.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
@@ -149,7 +149,7 @@
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/layout/bak_activity_main.xml",
-        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/res/layout/bak_activity_main.xml"
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/res/layout/bak_activity_main.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
@@ -157,7 +157,7 @@
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/layout/camera_demo1_activity.xml",
-        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/res/layout/camera_demo1_activity.xml"
+        "source": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/res/layout/camera_demo1_activity.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",

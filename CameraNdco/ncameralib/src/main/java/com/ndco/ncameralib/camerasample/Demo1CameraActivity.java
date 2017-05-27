@@ -51,7 +51,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.camera_demo1_activity);
 
         // Create our Preview view and set it as the content of our activity.
@@ -193,9 +192,12 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     Runnable runnable=new Runnable() {
         @Override
         public void run() {
-            // TODO Auto-generated method stub
-            //要做的事情
+            // TODO 拍照
             tackpicture();
+
+            // TODO 解析
+//            tackpicture();
+            
             handler.postDelayed(this, 3000);
         }
     };

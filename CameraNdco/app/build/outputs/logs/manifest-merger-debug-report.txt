@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:2:1-47:12
+ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml
@@ -45,7 +45,7 @@ MERGED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucke
 	android:name
 		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:11:19-67
 application
-ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:14:5-45:19
+ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:14:5-31:19
 MERGED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/AndroidManifest.xml:20:5-40:19
 MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.2.1] /Users/ksymac/.android/build-cache/8c15df856d369af0de8036c1abcbdcc1bcbfbe46/output/AndroidManifest.xml:22:5-20
@@ -75,20 +75,6 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:27:17-77
 	android:name
 		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:27:27-74
-activity#com.zuk.camerasample.MainCameraActivity
-ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:31:9-35:20
-	android:screenOrientation
-		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:31:55-91
-	android:name
-		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:31:20-54
-intent-filter#android.intent.category.LAUNCHER
-ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:32:13-34:29
-activity#com.zuk.camerasample.Demo1CameraActivity
-ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:37:9-42:20
-	android:screenOrientation
-		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:38:13-50
-	android:name
-		ADDED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml:37:20-75
 uses-sdk
 INJECTED from /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/AndroidManifest.xml:7:5-9:41
@@ -106,6 +92,8 @@ ADDED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket
 		ADDED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/AndroidManifest.xml:28:13-49
 	android:name
 		ADDED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/AndroidManifest.xml:27:13-79
+intent-filter#android.intent.category.LAUNCHER
+ADDED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/AndroidManifest.xml:29:13-31:29
 activity#com.ndco.ncameralib.camerasample.Demo1CameraActivity
 ADDED from [CameraNdco:ncameralib:unspecified] /Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/ncameralib/build/intermediates/bundles/default/AndroidManifest.xml:33:9-39:20
 	android:screenOrientation

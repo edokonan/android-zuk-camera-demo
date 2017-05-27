@@ -28,20 +28,6 @@
             </intent-filter>
         </activity>
 
-        <activity  android:name=".MainCameraActivity" android:screenOrientation="portrait">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity  android:name="com.zuk.camerasample.Demo1CameraActivity"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
     </application>
 
 </manifest>
