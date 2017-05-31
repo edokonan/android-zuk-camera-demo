@@ -42,12 +42,4 @@
         </TextView>
 
 
-        <TextView
-            android:id="@+id/debug_doing_info"
-            android:layout_width="100px"
-            android:layout_height="100px"
-            android:layout_centerInParent="true"
-            android:text="処理中。。。"
-            android:textColor="@color/colorAccent"></TextView>
-
 </RelativeLayout>
