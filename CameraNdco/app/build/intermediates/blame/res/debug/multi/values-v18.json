@@ -11,13 +11,13 @@
                     "endOffset": 99
                 },
                 "from": {
-                    "file": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/values-v18/values-v18.xml",
+                    "file": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/values-v18/values-v18.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 291,
+                        "startOffset": 55,
                         "endColumn": 48,
-                        "endOffset": 335
+                        "endOffset": 99
                     }
                 }
             }

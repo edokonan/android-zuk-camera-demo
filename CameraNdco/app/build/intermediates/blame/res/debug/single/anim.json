@@ -1,42 +1,42 @@
 [
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_slide_in_bottom.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_slide_in_bottom.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_popup_exit.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_popup_exit.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_fade_out.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_fade_out.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_slide_in_top.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_slide_in_top.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_fade_in.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_fade_in.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_popup_enter.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_popup_enter.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_grow_fade_in_from_bottom.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_slide_out_top.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_slide_out_top.xml"
     },
     {
         "merged": "/Users/ksymac/Documents/bitbucket/android-zuk-camera-demo/CameraNdco/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
-        "source": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/anim/abc_slide_out_bottom.xml"
+        "source": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/anim/abc_slide_out_bottom.xml"
     }
 ]

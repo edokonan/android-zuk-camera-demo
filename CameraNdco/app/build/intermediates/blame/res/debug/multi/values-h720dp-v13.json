@@ -11,13 +11,13 @@
                     "endOffset": 117
                 },
                 "from": {
-                    "file": "/Users/ksymac/.android/build-cache/3e63ad171e61b9dc8643b610e35d16c0185f4efe/output/res/values-h720dp/values-h720dp.xml",
+                    "file": "/Users/ksymac/.android/build-cache/5ba1f274d1367a524018852af566bb8510115693/output/res/values-h720dp-v13/values-h720dp-v13.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 294,
+                        "startOffset": 55,
                         "endColumn": 66,
-                        "endOffset": 356
+                        "endOffset": 117
                     }
                 }
             }

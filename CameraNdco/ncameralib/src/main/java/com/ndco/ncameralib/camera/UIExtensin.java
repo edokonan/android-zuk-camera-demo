@@ -2,6 +2,8 @@ package com.ndco.ncameralib.camera;
 
 import android.hardware.Camera;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -34,6 +36,18 @@ public class UIExtensin  {
 
     //根据相同比例选择最大的size
     static public Camera.Size getMaxSizeByRate(float r, List<Camera.Size> sizeList){
+        Collections.sort(sizeList, new Comparator<Camera.Size>() {
+            @Override
+            public int compare(Camera.Size o1, Camera.Size o2) {
+                if (o1.width > o2.width) {
+                    return -1;
+                } else if (o1.width == o2.width) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            }
+        });
         for (Camera.Size size : sizeList){
             float rate = getRate(size.width,size.height);
             if (Math.abs(r - rate) <= 0.2) {

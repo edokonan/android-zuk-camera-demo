@@ -10,7 +10,7 @@ public class Demo1CameraConfig {
     static float PicturesizeRate = 1.77f;
 
     //设置识别框的比例
-    static float overlay_rect_width_rate = 0.6f;
-    static float overlay_rect_height_rate = 0.4f;
+    static float overlay_rect_width_rate = 0.9f;
+    static float overlay_rect_height_rate = 0.28f;
 
 }
