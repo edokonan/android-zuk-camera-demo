@@ -23,6 +23,7 @@
             >
         </RelativeLayout>
 
+
         <TextView
             android:id="@+id/debug_infoView"
             android:layout_width="match_parent"

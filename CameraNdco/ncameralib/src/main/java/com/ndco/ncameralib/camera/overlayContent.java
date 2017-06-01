@@ -44,7 +44,7 @@ public class overlayContent extends View {
     }
     //设置识别框的坐标
     public void setViewRect(int view_width,int view_height,
-                         float wrate,float hrate){
+                            float wrate,float hrate){
         float left = ((float)view_width - (float)view_width * wrate)/2;
         float right = (float)view_width - left;
 

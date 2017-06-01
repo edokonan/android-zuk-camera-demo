@@ -102,7 +102,7 @@ public class MainCameraActivity extends AppCompatActivity implements Camera.Pict
         //get the mobile Pictures directory
         File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         //get the current time
-        String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyy-MMdd-HH-mm-ss-SSS").format(new Date());
         return new File(picDir.getPath() + File.separator + "hejunlin_"+ timeStamp + ".jpg");
     }
 

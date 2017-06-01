@@ -1,6 +1,8 @@
 package com.ndco.ncameralib.camerasample;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,9 +10,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.hardware.Camera;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -29,30 +29,38 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ndco.ncameralib.camera.NCameraReturnInfo;
 import com.ndco.ncameralib.camera.PictureExtensin;
 import com.ndco.ncameralib.camera.UIExtensin;
 import com.ndco.ncameralib.camera.overlayContent;
 import com.ndco.ncameralib.R;
+//import com.ndco.ocr.OcrConst;
+//
+//import com.ndco.ocr.OcrMain;
+//import com.ndco.ocr.OcrResult;
+//import com.ndco.ocr.OcrUtil;
 
+//import org.opencv.android.OpenCVLoader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.spec.ECField;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
-import static android.view.Gravity.CENTER_VERTICAL;
-import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
-import static android.widget.RelativeLayout.ALIGN_PARENT_RIGHT;
-import static android.widget.RelativeLayout.ALIGN_PARENT_TOP;
+import static android.content.ContentValues.TAG;
 import static android.widget.RelativeLayout.CENTER_IN_PARENT;
+//import static com.ndco.ocr.OcrConst.ERROR_SUCESS;
 import static java.lang.Thread.enumerate;
 import static java.lang.Thread.sleep;
 
@@ -61,11 +69,10 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     private static final String TAG = Demo1CameraActivity.class.getSimpleName();
     public static final int ncamera_requestCode = 123;
 
-
     RelativeLayout main_view;
     RelativeLayout frameLayout_preview; //显示浏览图像的容器View
     private Demo1SurfacePreview mCameraSurPreview; //相机实时浏览View
-//    private Demo3SurfacePreview mCameraSurPreview; //相机实时浏览View
+    //    private Demo3SurfacePreview mCameraSurPreview; //相机实时浏览View
 
     RelativeLayout overlay_view; //显示识别框框的容器View
     overlayContent rectview; //识别框
@@ -94,7 +101,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         overlay_view = (RelativeLayout) findViewById(R.id.overlay_view);
         debug_infoView = (TextView) findViewById(R.id.debug_infoView);
         debug_camera_infoView = (TextView) findViewById(R.id.debug_camera_infoView);
-
         mCameraSurPreview = new Demo1SurfacePreview(this);
 
         mCameraSurPreview.myActivity = this;
@@ -104,22 +110,66 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
         rectview = new overlayContent(this);
         overlay_view.addView(rectview,layoutParams);
+
+        TextView textView = new TextView(Demo1CameraActivity.this);
+        // テキストビューのテキストを設定します
+        textView.setText("テスト");
+        // テキストビューのテキストを取得します
+        String text = textView.getText().toString();
+        overlay_view.addView(textView,layoutParams);
+
+//        if(!OpenCVLoader.initDebug()){
+//            Log.i("OpenCV", "Failed");
+//        }else{
+//            Log.i("OpenCV", "successfully built !");
+//            Context context = getApplicationContext();
+//            AssetManager assetsManger = getResources().getAssets();
+//
+//            boolean hasFile = OcrUtil.hasTessdataFile(context, "jpn");
+//            if (!hasFile) {
+//                pictureExtensin.copyTessdataFile("tessdata", "jpn.traineddata", context, assetsManger);
+//            }
+//            boolean hasFile2 = OcrUtil.hasTessdataFile(context, "eng");
+//            if (!hasFile2) {
+//                pictureExtensin.copyTessdataFile("tessdata", "eng.traineddata", context, assetsManger);
+//            }
+//        }
+
+        mHandler = new Handler(Looper.getMainLooper());
     }
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        stopTask();
+        super.onBackPressed();
+        finish();
+    }
+    protected void onPause() {
+        stopTask();
+        super.onPause();
+        finish();
+    }
 
     AlertDialog waitDialog;
+    Handler mHandler;
     public void showWaitDialog() {
-        AlertDialog.Builder pWaitDailogBuilder = new AlertDialog.Builder(Demo1CameraActivity.this);
-        pWaitDailogBuilder.setMessage("処理中..");
-        waitDialog = pWaitDailogBuilder.show();
+        if (mCameraSurPreview!=null){
+            AlertDialog.Builder pWaitDailogBuilder = new AlertDialog.Builder(Demo1CameraActivity.this);
+            pWaitDailogBuilder.setMessage("処理中..");
+            waitDialog = pWaitDailogBuilder.show();
+        }else{
+            stopTask();
+        }
     }
     public void closeWaitDialog(){
-        if(waitDialog!=null)
-            waitDialog.dismiss();
+        if(waitDialog!=null){
+            waitDialog.cancel();
+            waitDialog=null;
+        }
     }
+
+
+
+
     String picturePath;
 
     public void savePicture(byte[] data){
@@ -145,22 +195,15 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     }
 
 
+    ProgressDialog progressDialog;
     // 保存照片
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
-//        Handler mHandler = new Handler(Looper.getMainLooper());
-//        mHandler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//            }
-//        });
 
-        showWaitDialog();
-//        //save the picture to sdcard
+        //save the picture to sdcard
         savePicture(data);
         // Restart the preview and re-enable the shutter button so that we can take another picture
         camera.startPreview();
-
         // TODO 解析
         long start = System.currentTimeMillis();
         Log.v(TAG, "#parsepicture# start");
@@ -169,7 +212,6 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         Log.v(TAG, "#parsepicture# end: (processing time = " + (end-start)/1000.0 + "s)");
 
         closeWaitDialog();
-        ret = false;
         if (!ret){
             startTask();
         }else{
@@ -181,7 +223,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     }
     private File getOutputMediaFile(){
         File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyy-MMdd-HH-mm-ss-SSS").format(new Date());
         return new File(picDir.getPath() + File.separator+ "ZCamera-" + timeStamp + ".jpg");
     }
 
@@ -282,12 +324,10 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     Runnable runnable=new Runnable() {
         @Override
         public void run() {
-            // TODO 拍照
             tackpicture();
+            showWaitDialog();
         }
     };
-
-
     void tackpicture(){
         if (mCameraSurPreview!=null){
             mCameraSurPreview.takePicture(this);
@@ -315,26 +355,81 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 //            int rowEnd   = pictureExtensin.buttom_left_point.y;
 //            int colStart = pictureExtensin.top_left_point.x;
 //            int colEnd   = pictureExtensin.top_right_point.x;
+//            if (false) {
+//                File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//                File file = new File(dir, "b03.jpg");
+//                FileOutputStream fos = null;
+//                try {
+//                    InputStream is = getResources().getAssets().open("images/b03.jpg");
+//                    fos = new FileOutputStream(file);
+//                    fos.write(OcrUtil.readAll(is));
+//                } catch (IOException e) {
+//                    Log.w("TAG", e.getMessage(), e);
+//                    throw new RuntimeException(e);
+//                } finally {
+//                    if (fos != null) {
+//                        try {
+//                            fos.close();
+//                        } catch (IOException e) {
+//                            Log.w("TAG", e.getMessage(), e);
+//                        }
+//                    }
+//                }
+//                this.picturePath = file.getAbsolutePath();
+//            }
 
+            Log.i(TAG, pictureExtensin.bitmap.toString());
+            Log.i(TAG, pictureExtensin.top_left_point.toString());
+            Log.i(TAG, pictureExtensin.top_right_point.toString());
+            Log.i(TAG, pictureExtensin.buttom_left_point.toString());
+            Log.i(TAG, pictureExtensin.buttom_right_point.toString());
 
-            sleep(200);
+            // OCR
+//            Context context = getApplicationContext();
+//            AssetManager assetsManger = getResources().getAssets();
+//
+//            boolean hasFile = OcrUtil.hasTessdataFile(context, "jpn");
+//            if (!hasFile) {
+//                pictureExtensin.copyTessdataFile("tessdata", "jpn.traineddata", context, assetsManger);
+//            }
+
+            int rowStart = pictureExtensin.top_left_point.y;
+            int rowEnd   = pictureExtensin.buttom_left_point.y;
+            int colStart = pictureExtensin.top_left_point.x;
+            int colEnd   = pictureExtensin.top_right_point.x;
+
+            Log.v(TAG, "rowStart, rowEnd, colStart, colEnd: " + rowStart+","+rowEnd+","+colStart+","+colEnd);
+            int[] trimming_pt = new int[]{rowStart, rowEnd, colStart, colEnd};
+//            OcrMain ocrMain = new OcrMain();
+//            OcrResult ocrResult = ocrMain.main(pictureExtensin.bitmap, trimming_pt, getApplicationContext());
+//
+//            if (ocrResult.getResult() == 0) {
+//                returnInfo.setResult(ocrResult.getResult());
+//                returnInfo.setTexts(ocrResult.getTexts());
+//                returnInfo.setMessage(ocrResult.getMessage());
+//                returnInfo.setImgs(ocrResult.getImgs());
+//                returnInfo.setImgFileNames(ocrResult.getImgFileNames());
+//                return true;
+//            }
+
+//            sleep(5000);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
         }
         icount++;
-        if (icount>30){
+        if (icount>3){
             return true;
         }
         return false;
     }
 
+
     // 开始拍照
     public void startTask(){
         Log.i(TAG, "startTask");
-        handler.postDelayed(runnable, 5000);
+        mHandler.postDelayed(runnable, 5000);
     }
     void stopTask(){
-        handler.removeCallbacks(runnable);
+        mHandler.removeCallbacks(runnable);
     }
 }
-
