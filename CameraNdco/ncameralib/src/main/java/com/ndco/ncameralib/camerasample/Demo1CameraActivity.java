@@ -249,7 +249,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 //        previewWidth = screenWidth/2;
 //        previewHeight = (int) ((float)previewWidth * ((float)Camera_PreviewSize.height / (float)Camera_PreviewSize.width));
 //        横屏计算
-        previewHeight = (int)(screenHeight*1.5);
+        previewHeight = (int)(screenHeight-55);
         previewWidth = (int) ((float)previewHeight * ((float)Camera_PreviewSize.width / (float)Camera_PreviewSize.height));
 
         //重新设置浏览视图容器的大小
