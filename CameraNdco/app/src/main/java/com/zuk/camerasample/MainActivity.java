@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import static android.R.attr.x;
 import static android.R.attr.y;
@@ -43,17 +44,6 @@ public class MainActivity extends AppCompatActivity{
     ImageView imageView5,imageView6,imageView7,imageView8;
     private TextView textView5,textView6,textView7,textView8,textView9,textView10,textView11,textView12;
     private static final int REQUEST_PERMISSION_CAMERA_CODE = 1;
-
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-////        if (requestCode == REQUEST_PERMISSION_CAMERA_CODE) {
-////            int grantResult = grantResults[0];
-////            boolean granted = grantResult == PackageManager.PERMISSION_GRANTED;
-////
-////        }
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,65 +61,71 @@ public class MainActivity extends AppCompatActivity{
             Log.i(TAG, "Not null at onCreate");
         }
         initUI();
-
-        requestCameraPermission();
-//        requestReadAndWritePermission();
-        requestPermissionWRITE();
+        requestPermission();
     }
 
     static int REQUEST_CODE_CAMERA_PERMISSION = 333;
     static int REQUEST_CODE_WRITE_PERMISSION = 334;
-
-    // Permission handling for Android 6.0
-    private void requestCameraPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.CAMERA)) {
-            Log.d(TAG, "shouldShowRequestPermissionRationale:追加説明");
-            // 権限チェックした結果、持っていない場合はダイアログを出す
-            new AlertDialog.Builder(this)
-                    .setTitle("パーミッションの追加説明")
-                    .setMessage("このアプリで写真を撮るにはパーミッションが必要です")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MainActivity.this,
-                                    new String[]{Manifest.permission.CAMERA,
-                                            Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    REQUEST_CODE_CAMERA_PERMISSION);
-                        }
-                    })
-                    .create()
-                    .show();
-            return;
-        }
-
+    private void requestPermission(){
+        ArrayList<String> strs = new ArrayList<String>();
         // 権限を取得する
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,},
-                    REQUEST_CODE_CAMERA_PERMISSION);
-        } else {
+            strs.add(Manifest.permission.CAMERA);
         }
-
-        return;
-    }
-
-    void requestPermissionWRITE() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED) {
-            String[] permissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            strs.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            strs.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+        if(strs.size()>0){
+            String[] permissions = new String[strs.size()];
+            for(int cnt=0;cnt<strs.size();cnt++)
+            {
+                permissions[cnt] = strs.get(cnt);
+            }
             ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_WRITE_PERMISSION);
-        } else {
         }
     }
-    private void requestReadAndWritePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-        } else {
-            Log.e(TAG, "REQUEST WRITE/READ EXTERNAL_STORAGE PERMISSION ERROR");
-        }
-    }
-
+//    // Permission handling for Android 6.0
+//    private void requestCameraPermission() {
+//        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+//                Manifest.permission.CAMERA)) {
+//            Log.d(TAG, "shouldShowRequestPermissionRationale:追加説明");
+//            // 権限チェックした結果、持っていない場合はダイアログを出す
+//            new AlertDialog.Builder(this)
+//                    .setTitle("パーミッションの追加説明")
+//                    .setMessage("このアプリで写真を撮るにはパーミッションが必要です")
+//                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            ActivityCompat.requestPermissions(MainActivity.this,
+//                                    new String[]{Manifest.permission.CAMERA,
+//                                            Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                                    REQUEST_CODE_CAMERA_PERMISSION);
+//                        }
+//                    })
+//                    .create()
+//                    .show();
+//            return;
+//        }
+//
+//        return;
+//    }
+//    void requestPermissionWRITE() {
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+//                PackageManager.PERMISSION_GRANTED) {
+//            String[] permissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
+//            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_WRITE_PERMISSION);
+//        } else {
+//        }
+//    }
+//    private void requestReadAndWritePermission() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+//            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+//        } else {
+//            Log.e(TAG, "REQUEST WRITE/READ EXTERNAL_STORAGE PERMISSION ERROR");
+//        }
+//    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
