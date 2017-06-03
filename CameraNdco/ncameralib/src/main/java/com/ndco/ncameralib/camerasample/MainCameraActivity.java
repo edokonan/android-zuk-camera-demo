@@ -27,7 +27,7 @@ import com.ndco.ncameralib.R;
 public class MainCameraActivity extends AppCompatActivity implements Camera.PictureCallback, View.OnClickListener {
 
     private static final String TAG = MainCameraActivity.class.getSimpleName();
-    private SurfacePreview mCameraSurPreview;
+    private Surface2Preview mCameraSurPreview;
     private ImageView mCaptureButton;
 
 
@@ -44,7 +44,7 @@ public class MainCameraActivity extends AppCompatActivity implements Camera.Pict
         // Create our Preview view and set it as the content of our activity.
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 //        mCameraSurPreview = (SurfacePreview) (SurfaceView) findViewById(R.id.surfaceView);
-        mCameraSurPreview = new SurfacePreview(this);
+        mCameraSurPreview = new Surface2Preview(this);
         mCameraSurPreview.myActivity = this;
         preview.addView(mCameraSurPreview);
         initCameraPreviewViewSize();//
@@ -93,7 +93,7 @@ public class MainCameraActivity extends AppCompatActivity implements Camera.Pict
 
     @Override
     public void onClick(View v) {
-        mCaptureButton.setEnabled(false);
+//        mCaptureButton.setEnabled(false);
         // get an image from the camera
         mCameraSurPreview.takePicture(this);
     }

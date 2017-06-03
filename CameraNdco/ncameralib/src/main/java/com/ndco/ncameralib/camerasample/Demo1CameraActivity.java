@@ -1,14 +1,9 @@
 package com.ndco.ncameralib.camerasample;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -26,14 +21,12 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.ndco.ncameralib.camera.Demo1CameraConfig;
 import com.ndco.ncameralib.camera.NCameraReturnInfo;
 import com.ndco.ncameralib.camera.PictureExtensin;
 import com.ndco.ncameralib.camera.UIExtensin;
@@ -51,17 +44,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.security.spec.ECField;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 
-import static android.content.ContentValues.TAG;
-import static android.widget.RelativeLayout.CENTER_IN_PARENT;
 //import static com.ndco.ocr.OcrConst.ERROR_SUCESS;
-import static java.lang.Thread.enumerate;
 import static java.lang.Thread.sleep;
 
 public class Demo1CameraActivity extends AppCompatActivity implements Camera.PictureCallback, View.OnClickListener {
@@ -71,8 +58,8 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
     RelativeLayout main_view;
     RelativeLayout frameLayout_preview; //显示浏览图像的容器View
-    private Demo1SurfacePreview mCameraSurPreview; //相机实时浏览View
-    //    private Demo3SurfacePreview mCameraSurPreview; //相机实时浏览View
+//    private Demo1SurfacePreview mCameraSurPreview; //相机实时浏览View
+    private Demo2SurfacePreview mCameraSurPreview; //相机实时浏览View
 
     RelativeLayout overlay_view; //显示识别框框的容器View
     overlayContent rectview; //识别框
@@ -101,7 +88,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         overlay_view = (RelativeLayout) findViewById(R.id.overlay_view);
         debug_infoView = (TextView) findViewById(R.id.debug_infoView);
         debug_camera_infoView = (TextView) findViewById(R.id.debug_camera_infoView);
-        mCameraSurPreview = new Demo1SurfacePreview(this);
+        mCameraSurPreview = new Demo2SurfacePreview(this);
 
         mCameraSurPreview.myActivity = this;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -213,6 +200,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
         closeWaitDialog();
         if (!ret){
+            mCameraSurPreview.endTakePicture();
             startTask();
         }else{
             Intent resultIntent = new Intent();
@@ -229,7 +217,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
     @Override
     public void onClick(View v) {
-        mCameraSurPreview.takePicture(this);
+        mCameraSurPreview.takePicture(this, Demo1CameraConfig.TakePicture_FOCUS_MODE_MACRO);
     }
 
 
@@ -261,7 +249,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 //        previewWidth = screenWidth/2;
 //        previewHeight = (int) ((float)previewWidth * ((float)Camera_PreviewSize.height / (float)Camera_PreviewSize.width));
 //        横屏计算
-        previewHeight = screenHeight-100;
+        previewHeight = (int)(screenHeight*1.5);
         previewWidth = (int) ((float)previewHeight * ((float)Camera_PreviewSize.width / (float)Camera_PreviewSize.height));
 
         //重新设置浏览视图容器的大小
@@ -330,7 +318,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     };
     void tackpicture(){
         if (mCameraSurPreview!=null){
-            mCameraSurPreview.takePicture(this);
+            mCameraSurPreview.takePicture(this, Demo1CameraConfig.TakePicture_FOCUS_MODE_MACRO);
         }else{
             stopTask();
         }
@@ -426,7 +414,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
 
     // 开始拍照
     public void startTask(){
-        Log.i(TAG, "startTask");
+        Log.w(TAG, "------startTask-----------");
         mHandler.postDelayed(runnable, 5000);
     }
     void stopTask(){

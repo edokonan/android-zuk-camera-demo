@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.ndco.ncameralib.camera.Demo1CameraConfig;
 import com.ndco.ncameralib.camera.UIExtensin;
 
 import java.io.IOException;
@@ -117,12 +118,14 @@ public class Demo1SurfacePreview extends SurfaceView implements SurfaceHolder.Ca
         Log.d(TAG, "surfaceDestroyed() is called");
     }
 
-    public void takePicture(Camera.PictureCallback imageCallback) {
+    public void takePicture(Camera.PictureCallback imageCallback,int iMode) {
         if (mCamera != null){
             mCamera.takePicture(null, null, imageCallback);
         }
     }
+    public void endTakePicture(){
 
+    }
 
 
     List<Camera.Size> PictureSizelist;

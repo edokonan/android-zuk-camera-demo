@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.ndco.ncameralib.camera.Demo1CameraConfig;
+
 /**
  * Created by eugene on 2017/05/29.
  */
@@ -37,7 +39,7 @@ public class SampleActivity
 
     @Override
     public void onClick(View v) {
-        mCameraSurPreview.takePicture(this);
+        mCameraSurPreview.takePicture(this,Demo1CameraConfig.TakePicture_FOCUS_MODE_AUTO);
     }
 
 
@@ -63,7 +65,7 @@ public class SampleActivity
     void tackpicture(){
         this.showWaitDialog();
         if (mCameraSurPreview!=null){
-            mCameraSurPreview.takePicture(this);
+            mCameraSurPreview.takePicture(this, Demo1CameraConfig.TakePicture_FOCUS_MODE_AUTO);
         }else{
             stopTask();
         }
