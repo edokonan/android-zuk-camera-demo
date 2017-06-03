@@ -85,81 +85,11 @@ public class MainActivity extends AppCompatActivity{
             ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_WRITE_PERMISSION);
         }
     }
-//    // Permission handling for Android 6.0
-//    private void requestCameraPermission() {
-//        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-//                Manifest.permission.CAMERA)) {
-//            Log.d(TAG, "shouldShowRequestPermissionRationale:追加説明");
-//            // 権限チェックした結果、持っていない場合はダイアログを出す
-//            new AlertDialog.Builder(this)
-//                    .setTitle("パーミッションの追加説明")
-//                    .setMessage("このアプリで写真を撮るにはパーミッションが必要です")
-//                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            ActivityCompat.requestPermissions(MainActivity.this,
-//                                    new String[]{Manifest.permission.CAMERA,
-//                                            Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                                    REQUEST_CODE_CAMERA_PERMISSION);
-//                        }
-//                    })
-//                    .create()
-//                    .show();
-//            return;
-//        }
-//
-//        return;
-//    }
-//    void requestPermissionWRITE() {
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-//                PackageManager.PERMISSION_GRANTED) {
-//            String[] permissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE,};
-//            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_WRITE_PERMISSION);
-//        } else {
-//        }
-//    }
-//    private void requestReadAndWritePermission() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-//            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-//        } else {
-//            Log.e(TAG, "REQUEST WRITE/READ EXTERNAL_STORAGE PERMISSION ERROR");
-//        }
-//    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        if (requestCode == REQUEST_CODE_CAMERA_PERMISSION) {
-            if (grantResults.length != 1 ||
-                    grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                Log.d(TAG, "onRequestPermissionsResult:DENYED");
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.CAMERA)) {
-                    Log.d(TAG, "[show error]");
-                    new AlertDialog.Builder(this)
-                            .setTitle("パーミッション取得エラー")
-                            .setMessage("再試行する場合は、再度Requestボタンを押してください")
-                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    // サンプルのため、今回はもう一度操作をはさんでいますが
-                                    // ここでrequestCameraPermissionメソッドの実行でもよい
-                                }
-                            })
-                            .create()
-                            .show();
-                } else {
-                    Log.d(TAG, "[show app settings guide]");
-
-                }
-            } else {
-                Log.d(TAG, "onRequestPermissionsResult:GRANTED");
-                // TODO 許可されたのでカメラにアクセスする
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     void initUI(){
