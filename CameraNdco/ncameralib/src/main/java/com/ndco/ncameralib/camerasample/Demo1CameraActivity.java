@@ -60,7 +60,8 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
     RelativeLayout frameLayout_preview; //显示浏览图像的容器View
 //private Demo1SurfacePreview mCameraSurPreview; //不强制对焦
 //private Demo2SurfacePreview mCameraSurPreview; //强制对焦
-    private Demo3SurfacePreview mCameraSurPreview; //只强制对焦一次
+//private Demo3SurfacePreview mCameraSurPreview; //只强制对焦一次
+    private Demo4SurfacePreview mCameraSurPreview; //只强制对焦一次
 
     RelativeLayout overlay_view; //显示识别框框的容器View
     overlayContent rectview; //识别框
@@ -89,7 +90,7 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         overlay_view = (RelativeLayout) findViewById(R.id.overlay_view);
         debug_infoView = (TextView) findViewById(R.id.debug_infoView);
         debug_camera_infoView = (TextView) findViewById(R.id.debug_camera_infoView);
-        mCameraSurPreview = new Demo3SurfacePreview(this);
+        mCameraSurPreview = new Demo4SurfacePreview(this);
 
         mCameraSurPreview.myActivity = this;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -198,7 +199,11 @@ public class Demo1CameraActivity extends AppCompatActivity implements Camera.Pic
         boolean ret = parsepicture(data);
         long end = System.currentTimeMillis();
         Log.v(TAG, "#parsepicture# end: (processing time = " + (end-start)/1000.0 + "s)");
+        try{
+            sleep(3000);
+        }catch (Exception e){
 
+        }
         closeWaitDialog();
         if (!ret){
             mCameraSurPreview.endTakePicture();
